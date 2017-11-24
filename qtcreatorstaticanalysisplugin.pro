@@ -3,12 +3,16 @@ DEFINES += QTCREATORSTATICANALYSISPLUGIN_LIBRARY
 # QtCreatorStaticAnalysisPlugin files
 
 SOURCES += \
-        qtcreatorstaticanalysispluginplugin.cpp
+        qtcreatorstaticanalysispluginplugin.cpp \
+    basesaengine.cpp \
+    cppcheckengine.cpp
 
 HEADERS += \
         qtcreatorstaticanalysispluginplugin.h \
         qtcreatorstaticanalysisplugin_global.h \
-        qtcreatorstaticanalysispluginconstants.h
+        qtcreatorstaticanalysispluginconstants.h \
+    basesaengine.h \
+    cppcheckengine.h
 
 # Qt Creator linking
 
@@ -39,7 +43,8 @@ QTC_LIB_DEPENDS += \
     # nothing here at this time
 
 QTC_PLUGIN_DEPENDS += \
-    coreplugin
+    coreplugin \
+    projectexplorer
 
 QTC_PLUGIN_RECOMMENDS += \
     # optional plugin dependencies. nothing here at this time

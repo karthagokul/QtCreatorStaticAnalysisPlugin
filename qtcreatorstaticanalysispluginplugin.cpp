@@ -7,7 +7,11 @@
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/coreconstants.h>
-
+#include <projectexplorer/projecttree.h>
+#include <coreplugin/messagemanager.h>
+#include <utils/fileutils.h>
+#include "basesaengine.h"
+#include "cppcheckengine.h"
 #include <QAction>
 #include <QMessageBox>
 #include <QMainWindow>
@@ -46,7 +50,7 @@ bool QtCreatorStaticAnalysisPluginPlugin::initialize(const QStringList &argument
     connect(action, &QAction::triggered, this, &QtCreatorStaticAnalysisPluginPlugin::triggerAction);
 
     Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
-    menu->menu()->setTitle(tr("QtCreatorStaticAnalysisPlugin"));
+    menu->menu()->setTitle(tr("Gokul Testing"));
     menu->addAction(cmd);
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
@@ -70,9 +74,13 @@ ExtensionSystem::IPlugin::ShutdownFlag QtCreatorStaticAnalysisPluginPlugin::abou
 
 void QtCreatorStaticAnalysisPluginPlugin::triggerAction()
 {
-    QMessageBox::information(Core::ICore::mainWindow(),
-                             tr("Action Triggered"),
-                             tr("This is an action from QtCreatorStaticAnalysisPlugin."));
+    QString filePath=ProjectExplorer::ProjectTree::instance()->currentFilePath().toString();
+    BaseSAEngine *engine=new CPPCheckEngine(ProjectExplorer::ProjectTree::instance());
+    engine->setCurrentFileName(filePath);
+    engine->run();
+    Core::MessageManager::write (tr ("Failed to write cppcheck's argument files")                                          );
+    Core::MessageManager::showOutputPane();
+
 }
 
 } // namespace Internal
