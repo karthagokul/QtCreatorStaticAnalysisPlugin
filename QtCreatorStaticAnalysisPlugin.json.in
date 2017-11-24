@@ -1,0 +1,11 @@
+{
+    \"Name\" : \"QtCreatorStaticAnalysisPlugin\",
+    \"Version\" : \"0.0.1\",
+    \"CompatVersion\" : \"0.0.1\",
+    \"Vendor\" : \"GokulKartha\",
+    \"Copyright\" : \"(C) Gokul Kartha\",
+    \"License\" : \"Put your license information here\",
+    \"Description\" : \"A Plugin to Integrate Static Analysis to Qt Creator IDE\",
+    \"Url\" : \"https://github.com/karthagokul\",
+    $$dependencyList
+}
